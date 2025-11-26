@@ -1,26 +1,32 @@
-// React ====================
-// function MyComponent() {
-//   return <h1>こんにちは</h1>;
-// }
-
-// const container = document.getElementById("root");
-// ReactDOM.render(<MyComponent />, container); // ここでレンダリングされる
-//  =========================
-
 // 上記のJSXが裏側で実際に処理される内容 (JSがほしい形に変換している) ==========
 // const element = React.createElement("h1", { title: "foo" }, "こんにちは");
 // const container = document.getElementById("root");
 // ReactDOM.render(element, container);
 // ===================================================================
 
-// createElementをJSに置き換え =========
-const element = {
-  type: "h1",
-  props: {
-    title: "foo",
-    children: "こんにちは",
-  },
-};
+function createElement(type, props, ...children) {
+  return {
+    type,
+    props: {
+      ...props,
+      children: children.map((child) =>
+        typeof child === "object" ? child : createTextElement(child)
+      ),
+    },
+  };
+}
+
+// オブジェクトに変換するための関数 (オブジェクトとして管理したいから)
+// Reactは無理やりオブジェクトとして扱うらしい
+function createTextElement(text) {
+  return {
+    type: "TEXT_ELEMENT", // ダミーの文字列
+    props: {
+      nodeValue: text,
+      children: [], // テキストノードはchildrenがないので空配列
+    },
+  };
+}
 
 const container = document.getElementById("root");
 
