@@ -1,9 +1,3 @@
-// 上記のJSXが裏側で実際に処理される内容 (JSがほしい形に変換している) ==========
-// const element = React.createElement("h1", { title: "foo" }, "こんにちは");
-// const container = document.getElementById("root");
-// ReactDOM.render(element, container);
-// ===================================================================
-
 function createElement(type, props, ...children) {
   return {
     type,
@@ -28,7 +22,7 @@ function createTextElement(text) {
   };
 }
 
-const container = document.getElementById("root");
+const element = createElement("h1", { title: "foo" }, "こんにちは");
 
 // renderをJSに置き換え
 const node = document.createElement(element.type); // h1要素を取得
