@@ -24,20 +24,22 @@ function createTextElement(text) {
   };
 }
 
-const element = createElement("h1", { title: "foo" }, "こんにちは");
-const container = document.getElementById("root");
+// const element = createElement("h1", { title: "foo" }, "こんにちは");
+// console.log(element);
 
-const node = document.createElement(element.type);
-node["title"] = element.props.title;
+// const container = document.getElementById("root");
 
-const text = document.createTextNode("");
-text["nodeValue"] = element.props.children;
+// const node = document.createElement(element.type);
+// node["title"] = element.props.title;
 
-// h1 の中にテキストノードを追加
-node.appendChild(text);
+// const text = document.createTextNode("");
+// text["nodeValue"] = element.props.children;
 
-// 最後に h1 を #root の中に配置してブラウザに表示
-container.appendChild(node);
+// node.appendChild(text);
+
+// container.appendChild(node);
+
+// ReactDOM.render(element, container);
 
 // ---------------------------
 // メモ・補足
