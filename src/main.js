@@ -51,7 +51,7 @@ function render(element, container) {
   // "TEXT_ELEMENT" ならテキストノード、それ以外ならHTML要素を作成
   const dom =
     element.type === "TEXT_ELEMENT"
-      ? document.createTextNode()
+      ? document.createTextNode(element.props.nodeValue)
       : document.createElement(element.type);
 
   // 🔥 Objectのkeyを取得 (titleやprops)
@@ -69,7 +69,7 @@ function render(element, container) {
   // 🔥 childrenに対してレンダーし、エレメントを作成
   element.props.children.forEach((child) => render(child, dom));
 
-  container.appnedChild(dom);
+  container.appendChild(dom);
 }
 
 const MyReact = {
@@ -77,26 +77,7 @@ const MyReact = {
   render,
 };
 
-const container = document.getElementById("root");
-const element = MyReact.createElement("h1", { title: "foo" }, "こんにちは");
-MyReact.render(element, container);
-
-// const element = createElement("h1", { title: "foo" }, "こんにちは");
-// console.log(element);
-
-// const container = document.getElementById("root");
-
-// const node = document.createElement(element.type);
-// node["title"] = element.props.title;
-
-// const text = document.createTextNode("");
-// text["nodeValue"] = element.props.children;
-
-// node.appendChild(text);
-
-// container.appendChild(node);
-
-// ReactDOM.render(element, container);
+export default MyReact;
 
 // ---------------------------
 // メモ・補足
