@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorkLoop Example</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      ul {
+        list-style-type: none;
+        padding-left: 0;
+      }
+      li {
+        background-color: #f0f0f0;
+        margin-bottom: 5px;
+        padding: 8px;
+        border-radius: 3px;
+      }
+      button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>WorkLoop デモ</h1>
+    <p>
+      下のボタンを押すと、リストにアイテムが少しずつ追加されていく様子が確認できます。<br />
+      ブラウザのコンソールを開いて、処理の流れも見てみましょう。
+    </p>
+    <button id="startButton">処理開始</button>
+    <ul id="taskList"></ul>
+
+    <script src="workloop-example.js"></script>
+  </body>
+</html>

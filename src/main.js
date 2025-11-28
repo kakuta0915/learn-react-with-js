@@ -72,6 +72,27 @@ function render(element, container) {
   container.appendChild(dom);
 }
 
+// 🔥 次に作業するタスク
+let nextUnitOfWork = null;
+
+function workLoop(deadline) {
+  // 🔥 作業台は使えなくなったか？
+  let shouldYield = false; // falseは使える
+
+  while (nextUnitOfWork && !shouldYield) {
+    nextUnitOfWork = performUnitOfWork(nextUnitOfWork);
+    // 🔥 deadlineから1ms以内残っているかを確認し、なければ作業台を使えない。
+    shouldYield = deadline.timeRemaining() < 1;
+  }
+  // 🔥 作業時間がない場合、作業時間を待ち続ける
+  requestIdleCallback(workLoop);
+}
+
+// 🔥 作業が途中ならその作業が返るし、作業が終わっていたら次の作業が返る
+function performUnitOfWork(nextUnitOfWork) {}
+
+requestIdleCallback(workLoop);
+
 const MyReact = {
   createElement,
   render,
